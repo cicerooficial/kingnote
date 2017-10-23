@@ -1,0 +1,118 @@
+.navbar-brand {
+    padding: 0px;
+}
+.navbar-brand>img {
+    height: 100%;
+    padding: 5px;
+    width: auto;
+}
+.navbar-brand {
+    height: 100px;
+}
+
+.navbar-inverse .navbar-nav>.active>a {
+    color: #fff;
+    background-color: #382208;
+}
+
+.nav >li >a {
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+.navbar-toggle {
+    padding: 10px;
+    margin: 25px 15px 25px 0;
+}
+.carousel-caption {
+    z-index: 10;
+    border-radius: 1px;
+    box-shadow: 0px 0px 0px 8px rgba(0,0,0,0.3);  
+    background-color: rgba(0, 0, 0, 0.5); 
+}
+
+body{
+    /* background-color: #fbee7e ;  */ 
+}
+
+.page-header {
+    padding-bottom: 0;
+    border-bottom: 1px solid #6c4212;
+}
+
+.navbar-inverse {
+    background-color: rgba(69, 42, 11, 0.82);
+} 
+
+#notepad #top {
+    margin-left: 0px;
+    width: 100%;
+    height: 75px;
+    position: relative;
+    background: url(../img/design/note-top.png) no-repeat -1px 0;
+    background-size: inherit;
+}
+
+#notepad #body {
+    resize: none;
+    border: none;
+    width: 100%;
+    height: 100%;
+    z-index: 99;
+    border-color: transparent;
+    padding-top: 4px;
+    padding-left: 44px;
+    padding-right: 30px;
+    font-size: 13px;
+    font-family: Arial;
+    line-height: 22px;
+    background: url(../img/design/note-bg.png) repeat-y -1px 0;
+    background-size: inherit;
+    outline: none;
+    color: #222222;
+    font-family: 'Myriad Pro',Arial, Verdana;
+}
+
+#notepad #top #title {
+    position: absolute;
+    top: 45px;
+    left: 40px;
+    height: 22px;
+    padding: 5px 2px 1px 5px;
+    background: none;
+    border: none;
+    width: 80%;
+    font-family: Arial;
+    font-weight: bold;
+    font-size: 20px;
+    color: #373737;
+    font-family: 'Myriad Pro',Arial, Verdana;
+    text-shadow: #d7ca6d 1px 1px 2px;
+    background-color: #d6c96d;
+    background: url(../img/design/title-bg.png) repeat-x 0 0;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+}
+
+#note-buttons {
+    right: 18px;
+    display: block;
+    position: absolute;
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    background-repeat: no-repeat;
+}
+
+#notepad {
+    margin: 20px;
+
+    padding: 0px;
+    /*    border: 2px solid;
+        border-color: black;
+    */
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    box-shadow: 8px 10px 20px #4c4b4b;
+}
+
