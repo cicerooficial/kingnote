@@ -38,10 +38,12 @@
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="index.jsp">Notas</a></li>
+                        <li class="active"><a href="index.jsp">Notas<span class="sr-only">(current)</span></a></li>
+                        <!-- 
                         <li><a href="lembretes.html">Lembretes<span class="sr-only">(current)</span></a></li>
-                        <!-- <li><a href="pesquisa.html">Pesquisa</a></li> -->
-                        <li><a href="Sobre.html">Sobre</a></li>
+                        <li><a href="pesquisa.html">Pesquisa</a></li> 
+                        -->
+                        <li><a href="sobre.jsp">Sobre</a></li>
 
                     </ul>
                 </div>
@@ -83,10 +85,10 @@
                                 <input type="hidden" id="noteId" value="${note.getId()}" />
                                 <input type="text" name="title" id="title" autocomplete="off" value="${note.getTitle()}" onkeyup="noteChanged()" onfocus="$(this).css('backgroundPosition', '0 -29px')"onblur="$(this).css('backgroundPosition', '0 0')" style="background-position: 0px 0px;" >
                                 <div id="note-buttons">
-                                    <a href="#" class="btn btn-success btn-md"> <span class="glyphicon glyphicon-floppy-disk"></span>   </a>
-                                    <a href="#" class="btn btn-success btn-md"> <span class="glyphicon glyphicon-time"></span>          </a>
-                                    <a href="#" class="btn btn-success btn-md"> <span class="glyphicon glyphicon-tags"></span>          </a>
-                                    <a href="#" class="btn btn-success btn-md"> <span class="glyphicon glyphicon-remove"></span>        </a>
+                                    <a href="saveNota.jsp?id=" class="btn btn-success btn-md"> <span class="glyphicon glyphicon-floppy-disk"></span>   </a>
+                                    <a href="addLembrete.jsp?id=" class="btn btn-default btn-md"> <span class="glyphicon glyphicon-time"></span>          </a>
+                                    <a href="addCategoria.jsp?id=" class="btn btn-warning btn-md"> <span class="glyphicon glyphicon-tags"></span>          </a>
+                                    <a href="delNota.jsp?id=" class="btn btn-danger btn-md"> <span class="glyphicon glyphicon-trash"></span>        </a>
                                 </div>
                             </div>
                             <div class="row" id="body-container">
