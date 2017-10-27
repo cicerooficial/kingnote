@@ -6,7 +6,7 @@
 <html lang="pt-br">
 
     <head>
-        <meta charset="utf-8">
+        <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Notas - KingNote</title>
@@ -85,10 +85,10 @@
                                 <input type="hidden" id="noteId" value="${note.getId()}" />
                                 <input type="text" name="title" id="title" autocomplete="off" value="${note.getTitle()}" onkeyup="noteChanged()" onfocus="$(this).css('backgroundPosition', '0 -29px')"onblur="$(this).css('backgroundPosition', '0 0')" style="background-position: 0px 0px;" >
                                 <div id="note-buttons">
-                                    <a href="saveNota.jsp?id=" class="btn btn-success btn-md"> <span class="glyphicon glyphicon-floppy-disk"></span>   </a>
-                                    <a href="addLembrete.jsp?id=" class="btn btn-default btn-md"> <span class="glyphicon glyphicon-time"></span>          </a>
-                                    <a href="addCategoria.jsp?id=" class="btn btn-warning btn-md"> <span class="glyphicon glyphicon-tags"></span>          </a>
-                                    <a href="delNota.jsp?id=" class="btn btn-danger btn-md"> <span class="glyphicon glyphicon-trash"></span>        </a>
+                                    <a href="saveNota.jsp?id=${note.getId()}" class="btn btn-success btn-md"> <span class="glyphicon glyphicon-floppy-disk"></span>   </a>
+                                    <a href="addLembrete.jsp?id=${note.getId()}" class="btn btn-default btn-md"> <span class="glyphicon glyphicon-time"></span>          </a>
+                                    <a href="addCategoria.jsp?id=${note.getId()}" class="btn btn-warning btn-md"> <span class="glyphicon glyphicon-tags"></span>          </a>
+                                    <a href="delNota.jsp?id=${note.getId()}" class="btn btn-danger btn-md"> <span class="glyphicon glyphicon-trash"></span>        </a>
                                 </div>
                             </div>
                             <div class="row" id="body-container">

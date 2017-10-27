@@ -67,6 +67,14 @@ public class KingNote {
     // END - Entity Trash
 
     // BEGIN - Entity Reminder
+    public ArrayList<Reminder> getReminders(String idNote) {
+        Note returnSearch = searchNote(idNote);
+        if (returnSearch != null) {
+            return returnSearch.getReminders();
+        }
+        return null;
+    }
+
     public void addReminder(String idNote, String title, Date data) {
         Reminder newReminder = new Reminder(title, data);
         Note returnSearch = searchNote(idNote);

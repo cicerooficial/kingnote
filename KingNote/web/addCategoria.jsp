@@ -34,8 +34,6 @@
                             aria-controls="navbar">
                         <span class="sr-only">Alterar navegação</span>
                         <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
                     </button>
                     <a class="navbar-brand" href="index.jsp"><img src="assets/img/logo.png" ></a>
                 </div>
@@ -56,7 +54,7 @@
             </div>
             <form class="form-horizontal" action="" method="POST">
 
-                <input type="hidden" name="notaId"/>
+                <input type="hidden" name="notaId" value="${param.id}"/>
 
                 <div class="form-group">
                     <label for="nome" class="col-sm-2 control-label">Nome</label>

@@ -52,25 +52,25 @@
             <div class="page-header">
                 <h1>L</h1>
             </div>
-            <form class="form-horizontal" action="" method="POST">
-
-                <input type="hidden" name="notaId"/>
+            <form class="form-horizontal" action="KingNoteServlet" method="POST">
+                <input type="hidden" name="operacao" value="addReminder"/>
+                <input type="hidden" name="idNote" value="${param.id}"/>
 
                 <div class="form-group">
                     <label for="title" class="col-sm-2 control-label">Título</label>
                     <div class="col-sm-6">
-                        <input class="form-control" type="text" id="titulo" name="titulo" />
+                        <input class="form-control" type="text" id="titulo" name="title" />
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="data" class="col-md-2 control-label">Data</label>
                     <div class="col-md-3">
-                        <div class="input-group date form_datetime" data-date-format="dd/mm/yyyy - hh:ii" data-link-field="dtp_input1">
+                        <div class="input-group date form_datetime" data-date-format="dd/mm/yyyy hh:ii" data-link-field="dtp_input1">
                             <input class="form-control" size="20" id="data" type="text" value="" readonly="">
                             <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
                         </div>
-                        <input type="hidden" id="dtp_input1" name="data" value="1979-09-12 03:10:07"><br>
+                        <input type="hidden" id="dtp_input1" name="date" value="1979-09-12 03:10:07"><br>
                     </div>
                 </div>
 
@@ -92,21 +92,24 @@
                     <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th class="col-md-1">#</th>
                                 <th>Título</th>
                                 <th class="col-md-3">Data</th>
                                 <th class="col-md-1">Ação</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>
-                                    <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-trash"></span> </a>
-                                </td>
-                            </tr>
+                            <c:if test="${sessionScope.kingnote.getReminders(param.id) != null}">
+                                <c:forEach items="${sessionScope.kingnote.getReminders(param.id)}" var="reminder" >
+                                    <tr>
+                                        <td class="row">${reminder.getTitle()}</td>
+                                        <td><fmt:formatDate pattern = "dd/MM/yyyy HH:mm" value = "${reminder.getData()}" /></td>
+                                        <td>
+                                            <a href="delReminder.jsp?idNote=${param.id}&idReminder=${reminder.getId()}" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-trash"></span> </a>
+                                        </td>
+                                    </tr>
+                                </c:forEach>
+                            </c:if>
+
                         </tbody>
                     </table>
 
@@ -131,7 +134,7 @@
         <script type="text/javascript">
             $('.form_datetime').datetimepicker({
                 language: 'pt-BR',
-                format: "dd/mm/yyyy - hh:ii",
+                format: "dd/mm/yyyy hh:ii",
                 weekStart: 1,
                 todayBtn: 1,
                 autoclose: 1,
