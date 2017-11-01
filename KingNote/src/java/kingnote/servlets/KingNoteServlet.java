@@ -61,7 +61,7 @@ public class KingNoteServlet extends HttpServlet {
             }
             String idNote = request.getParameter("idNote");
             String title = request.getParameter("title");
-            DateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm"); 
+            DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss"); 
             Date dateReminder;
             try {
                 dateReminder = (Date)formatter.parse(request.getParameter("date"));
