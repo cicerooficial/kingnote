@@ -95,6 +95,7 @@ body{
 }
 
 #note-buttons {
+    margin: 10px;
     right: 18px;
     display: block;
     position: absolute;
@@ -116,3 +117,10 @@ body{
     box-shadow: 8px 10px 20px #4c4b4b;
 }
 
+.button-no-style {
+      background: none !important; 
+      color: green;    
+      border: none;    
+      padding: 0! important;    
+      outline: inherit !important;
+}

@@ -83,22 +83,19 @@ public class KingNote {
         }
     }
 
-    public void editReminder(String idNote, String idReminder, String title, Date data) {
-        Note returnSearchNote = searchNote(idNote);
-        if (returnSearchNote != null) {
-            Reminder returnSearchReminder = searchReminder(returnSearchNote, idReminder);
-            if (returnSearchReminder != null) {
-                returnSearchReminder.setData(data);
-                returnSearchReminder.setTitle(title);
-            }
+    public void editReminder(String idReminder, String title, Date data) {
+        Reminder returnSearchReminder = searchReminderInAll(idReminder);
+        if (returnSearchReminder != null) {
+            returnSearchReminder.setData(data);
+            returnSearchReminder.setTitle(title);
         }
     }
 
-    public void removeReminder(String idNote, String idReminder) {
-        Note returnSearchNote = searchNote(idNote);
+    public void removeReminder(String idReminder) {
+        Note returnSearchNote = searchNoteOfReminder(idReminder);
         if (returnSearchNote != null) {
-            Reminder returnSearchReminder = searchReminder(returnSearchNote, idReminder);
-            if (returnSearchReminder != null) {
+            Reminder returnSearchReminder = searchReminder(returnSearchNote,idReminder);
+            if (returnSearchReminder != null){
                 returnSearchNote.getReminders().remove(returnSearchReminder);
             }
         }
@@ -106,8 +103,29 @@ public class KingNote {
 
     private Reminder searchReminder(Note note, String id) {
         for (Reminder reminder : note.getReminders()) {
-            if (reminder.getId().equals(id)) {
+            if (reminder.getId().contains(id)) {
                 return reminder;
+            }
+        }
+        return null;
+    }
+    private Reminder searchReminderInAll(String idReminder) {
+        for (Note note : notes) {
+            for (Reminder reminder : note.getReminders()) {
+                if (reminder.getId().contains(idReminder)) {
+                    return reminder;
+                }
+            }
+        }
+        return null;
+    }
+    
+    private Note searchNoteOfReminder(String idReminder) {
+        for (Note note : notes) {
+            for (Reminder reminder : note.getReminders()) {
+                if (reminder.getId().contains(idReminder)) {
+                    return note;
+                }
             }
         }
         return null;
@@ -154,30 +172,18 @@ public class KingNote {
     }
     // END - Entity Category
 
-    /**
-     * @return the notes
-     */
     public List<Note> getNotes() {
         return notes;
     }
 
-    /**
-     * @param notes the notes to set
-     */
     public void setNotes(ArrayList<Note> notes) {
         this.notes = notes;
     }
 
-    /**
-     * @return the trash
-     */
     public ArrayList<Note> getTrash() {
         return trash;
     }
 
-    /**
-     * @param trash the trash to set
-     */
     public void setTrash(ArrayList<Note> trash) {
         this.trash = trash;
     }
