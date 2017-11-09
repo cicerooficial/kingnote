@@ -19,7 +19,7 @@ public class KingNote {
     }
 
     public void editNote(String id, String title, String text) {
-        Note returnSearch = searchTrash(id);
+        Note returnSearch = searchNote(id);
         if (returnSearch != null) {
             returnSearch.setText(text);
             if (title.length() > 0) {
@@ -49,6 +49,14 @@ public class KingNote {
     // END - Entity Note
 
     // BEGIN - Entity Trash
+    public void restoreTrash(String id) {
+        Note returnSearch = searchTrash(id);
+        if (returnSearch != null) {
+            getTrash().remove(returnSearch);
+            getNotes().add(returnSearch);
+        }
+    }
+
     public void removeTrash(String id) {
         Note returnSearch = searchTrash(id);
         if (returnSearch != null) {
@@ -91,14 +99,16 @@ public class KingNote {
         }
     }
 
-    public void removeReminder(String idReminder) {
+    public String removeReminder(String idReminder) {
         Note returnSearchNote = searchNoteOfReminder(idReminder);
         if (returnSearchNote != null) {
-            Reminder returnSearchReminder = searchReminder(returnSearchNote,idReminder);
-            if (returnSearchReminder != null){
+            Reminder returnSearchReminder = searchReminder(returnSearchNote, idReminder);
+            if (returnSearchReminder != null) {
                 returnSearchNote.getReminders().remove(returnSearchReminder);
+                return returnSearchNote.getId();
             }
         }
+        return "";
     }
 
     private Reminder searchReminder(Note note, String id) {
@@ -109,6 +119,7 @@ public class KingNote {
         }
         return null;
     }
+
     private Reminder searchReminderInAll(String idReminder) {
         for (Note note : notes) {
             for (Reminder reminder : note.getReminders()) {
@@ -119,7 +130,7 @@ public class KingNote {
         }
         return null;
     }
-    
+
     private Note searchNoteOfReminder(String idReminder) {
         for (Note note : notes) {
             for (Reminder reminder : note.getReminders()) {

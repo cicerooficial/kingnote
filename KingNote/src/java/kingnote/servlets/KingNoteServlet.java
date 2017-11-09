@@ -17,11 +17,12 @@ import javax.servlet.http.HttpServletResponse;
 import kingnote.main.KingNote;
 
 public class KingNoteServlet extends HttpServlet {
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         String operacao = request.getParameter("operacao");
-        if ("cad".equals(operacao)) {
+        if ("cadNote".equals(operacao)) {
             KingNote kgnote = (KingNote) request.getSession().getAttribute("kingnote");
             if (kgnote == null) {
                 kgnote = new KingNote();
@@ -29,6 +30,21 @@ public class KingNoteServlet extends HttpServlet {
             String title = request.getParameter("title");
             String text = request.getParameter("text");
             kgnote.addNote(title, text);
+
+            request.getSession().setAttribute("kingnote", kgnote);
+
+            ServletContext servletContext = request.getServletContext();
+            RequestDispatcher dispatcher = servletContext.getRequestDispatcher("/index.jsp");
+            dispatcher.forward(request, response);
+        } else if ("editNote".equals(operacao)) {
+            KingNote kgnote = (KingNote) request.getSession().getAttribute("kingnote");
+            if (kgnote == null) {
+                kgnote = new KingNote();
+            }
+            String idNote = request.getParameter("idNote");
+            String title = request.getParameter("title");
+            String text = request.getParameter("text");
+            kgnote.editNote(idNote, title, text);
 
             request.getSession().setAttribute("kingnote", kgnote);
 
@@ -62,28 +78,65 @@ public class KingNoteServlet extends HttpServlet {
             if (kgnote == null) {
                 kgnote = new KingNote();
             }
-            String idNote = request.getParameter("idNote");
-            String title = request.getParameter("title");
-            DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-            Date dateReminder;
-            try {
-                dateReminder = (Date) formatter.parse(request.getParameter("date"));
-            } catch (ParseException ex) {
-                dateReminder = new Date(2000, 01, 01);
-                Logger.getLogger(KingNoteServlet.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            kgnote.addReminder(idNote, title, dateReminder);
+            String idReminder = request.getParameter("idReminder");
+            String idNote = kgnote.removeReminder(idReminder);
 
             request.getSession().setAttribute("kingnote", kgnote);
 
             ServletContext servletContext = request.getServletContext();
-            RequestDispatcher dispatcher = servletContext.getRequestDispatcher("/addReminder.jsp?id=" + idNote);
+            RequestDispatcher dispatcher;
+            if ("".equals(idNote)) {
+                dispatcher = servletContext.getRequestDispatcher("/index.jsp");
+            } else {
+                dispatcher = servletContext.getRequestDispatcher("/addReminder.jsp?id=" + idNote);
+            }
+            dispatcher.forward(request, response);
+        } else if ("delNote".equals(operacao)) {
+            KingNote kgnote = (KingNote) request.getSession().getAttribute("kingnote");
+            if (kgnote == null) {
+                kgnote = new KingNote();
+            }
+            String idNote = request.getParameter("idNote");
+
+            kgnote.removeNote(idNote);
+
+            request.getSession().setAttribute("kingnote", kgnote);
+
+            ServletContext servletContext = request.getServletContext();
+            RequestDispatcher dispatcher = servletContext.getRequestDispatcher("/index.jsp");
+            dispatcher.forward(request, response);
+        } else if ("delTrashNote".equals(operacao)) {
+            KingNote kgnote = (KingNote) request.getSession().getAttribute("kingnote");
+            if (kgnote == null) {
+                kgnote = new KingNote();
+            }
+            String idNote = request.getParameter("idNote");
+
+            kgnote.removeTrash(idNote);
+
+            request.getSession().setAttribute("kingnote", kgnote);
+
+            ServletContext servletContext = request.getServletContext();
+            RequestDispatcher dispatcher = servletContext.getRequestDispatcher("/trash.jsp");
+            dispatcher.forward(request, response);
+        } else if ("restoreTrashNote".equals(operacao)) {
+            KingNote kgnote = (KingNote) request.getSession().getAttribute("kingnote");
+            if (kgnote == null) {
+                kgnote = new KingNote();
+            }
+            String idNote = request.getParameter("idNote");
+
+            kgnote.restoreTrash(idNote);
+
+            request.getSession().setAttribute("kingnote", kgnote);
+
+            ServletContext servletContext = request.getServletContext();
+            RequestDispatcher dispatcher = servletContext.getRequestDispatcher("/trash.jsp");
             dispatcher.forward(request, response);
         }
     }
 
 // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-   
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

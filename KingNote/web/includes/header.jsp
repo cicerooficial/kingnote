@@ -40,8 +40,10 @@
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="index.jsp">Notas<span class="sr-only">(current)</span></a></li>
-                        <li><a href="sobre.jsp">Sobre</a></li>
+
+                        <li class="${pageContext.request.servletPath eq '/index.jsp' ? ' active' : ''}"><a href="index.jsp">Notas</a></li>
+                        <li class="${pageContext.request.servletPath eq '/trash.jsp' ? ' active' : ''}"><a href="trash.jsp">Lixeira</a></li>
+                        <li class="${pageContext.request.servletPath eq '/about.jsp' ? ' active' : ''}"><a href="about.jsp">Sobre</a></li>
                     </ul>
                 </div>
             </div>
