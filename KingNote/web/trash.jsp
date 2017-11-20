@@ -18,8 +18,8 @@
                             <input type="hidden" id="noteId" value="${note.getId()}" />
                             <input type="text" name="title" id="title" autocomplete="off" value="${note.getTitle()}" onkeyup="noteChanged()" onfocus="$(this).css('backgroundPosition', '0 -29px')"onblur="$(this).css('backgroundPosition', '0 0')" style="background-position: 0px 0px;" >
                             <div id="note-buttons">
-                                <a href="/KingNoteServlet?operacao=restoreTrashNote&idNote=${note.getId()}" title="Restaurar" > <span class="glyphicon glyphicon-arrow-left"></span>   </a>
-                                <a href="/KingNoteServlet?operacao=delTrashNote&idNote=${note.getId()}" title="Excluir"> <span class="glyphicon glyphicon-trash"></span>        </a>
+                                <a href="KingNoteServlet?operacao=restoreTrashNote&idNote=${note.getId()}" title="Restaurar" > <span class="glyphicon glyphicon-arrow-left"></span>   </a>
+                                <a href="KingNoteServlet?operacao=delTrashNote&idNote=${note.getId()}" title="Excluir"> <span class="glyphicon glyphicon-trash"></span>        </a>
                             </div>
                         </div>
                         <div class="row" id="body-container">

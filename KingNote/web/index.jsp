@@ -45,7 +45,7 @@
                                 </button>
                                 <a href="addReminder.jsp?id=${note.getId()}" title="Lembrete" > <span class="glyphicon glyphicon-time" style="color: #08c;"></span>          </a>
                                 <a href="addCategory.jsp?id=${note.getId()}" title="Categoria" > <span class="glyphicon glyphicon-tags" style="color: orange;"></span>          </a>
-                                <a href="/KingNoteServlet?operacao=delNote&idNote=${note.getId()}" title="Excluir"> <span class="glyphicon glyphicon-trash" style="color: red;"></span>        </a>
+                                <a href="KingNoteServlet?operacao=delNote&idNote=${note.getId()}" title="Excluir"> <span class="glyphicon glyphicon-trash" style="color: red;"></span>        </a>
                             </div>
                         </div>
                         <div class="row" id="body-container">

@@ -21,6 +21,10 @@
         <script src="assets/js/bootstrap.min.js"></script>
         <link href="assets/css/bootstrap-colorpicker.min.css" rel="stylesheet" media="screen">
         <script src="assets/js/bootstrap-colorpicker.min.js"></script>
+        
+        <script src="assets/js/bootstrap-select.min.js"></script>
+        <link href="assets/css/bootstrap-select.min.css" rel="stylesheet" media="screen">
+        
     </head>
 
     <body>

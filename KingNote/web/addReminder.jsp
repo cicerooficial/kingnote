@@ -61,7 +61,7 @@
                                 <td class="row">${reminder.getTitle()}</td>
                                 <td><fmt:formatDate pattern = "dd/MM/yyyy HH:mm" value = "${reminder.getData()}" /></td>
                                 <td>
-                                    <a href="/KingNoteServlet?operacao=delReminder&idReminder=${reminder.getId()}" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-trash"></span> </a>
+                                    <a href="KingNoteServlet?operacao=delReminder&idReminder=${reminder.getId()}" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-trash"></span> </a>
                                 </td>
                             </tr>
                         </c:forEach>

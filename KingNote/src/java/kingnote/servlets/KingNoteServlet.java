@@ -133,6 +133,50 @@ public class KingNoteServlet extends HttpServlet {
             ServletContext servletContext = request.getServletContext();
             RequestDispatcher dispatcher = servletContext.getRequestDispatcher("/trash.jsp");
             dispatcher.forward(request, response);
+        } else if ("addCategory".equals(operacao)) {
+            KingNote kgnote = (KingNote) request.getSession().getAttribute("kingnote");
+            if (kgnote == null) {
+                kgnote = new KingNote();
+            }
+            String idNote = request.getParameter("idNote");
+            String idCategory = request.getParameter("catexistente");
+
+            String name = request.getParameter("nome");
+            String color = request.getParameter("cor");
+            if (idCategory == null) {
+                idCategory = "";
+            }
+            if (idCategory.length() > 0) {
+                kgnote.addCategory(idNote, idCategory);
+            } else {
+                kgnote.addCategory(idNote, name, color);
+            }
+
+            request.getSession().setAttribute("kingnote", kgnote);
+
+            ServletContext servletContext = request.getServletContext();
+            RequestDispatcher dispatcher = servletContext.getRequestDispatcher("/addCategory.jsp?id=" + idNote);
+            dispatcher.forward(request, response);
+        } else if ("delCategory".equals(operacao)) {
+            KingNote kgnote = (KingNote) request.getSession().getAttribute("kingnote");
+            if (kgnote == null) {
+                kgnote = new KingNote();
+            }
+            String idCategory = request.getParameter("idCategory");
+            String idNote = request.getParameter("idNote");
+
+            kgnote.removeCategory(idNote, idCategory);
+
+            request.getSession().setAttribute("kingnote", kgnote);
+
+            ServletContext servletContext = request.getServletContext();
+            RequestDispatcher dispatcher;
+            if ("".equals(idNote)) {
+                dispatcher = servletContext.getRequestDispatcher("/index.jsp");
+            } else {
+                dispatcher = servletContext.getRequestDispatcher("/addCategory.jsp?id=" + idNote);
+            }
+            dispatcher.forward(request, response);
         }
     }
 

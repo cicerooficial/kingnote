@@ -10,37 +10,55 @@
     <div class="page-header">
         <h1>C</h1>
     </div>
-    <form class="form-horizontal" action="" method="POST">
-
-        <input type="hidden" name="notaId" value="${param.id}"/>
-
-        <div class="form-group">
-            <label for="nome" class="col-sm-2 control-label">Nome</label>
-            <div class="col-sm-6">
-                <input class="form-control" type="text" id="nome" name="nome" />
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label for="Cor" class="col-md-2 control-label">Cor</label>
-
-            <div class="col-md-3">
-                <div id="cp2" class="input-group colorpicker-component" data-input="#cor" >
-                    <input type="hidden" id="cor" name="cor" class="form-control" />
-                    <input type="text" id="corUser" class="form-control" disabled />
-                    <span class="input-group-addon"><i></i></span>
+    <form class="form-horizontal" action="KingNoteServlet" method="POST">
+        <input type="hidden" name="operacao" value="addCategory"/>
+        <input type="hidden" name="idNote" value="${param.id}"/>
+        <div id="cad-existente">
+            <h3>Existente:</h3>
+            <div class="form-group">
+                <label for="catexistente" class="col-sm-2 control-label">Categorias:</label>
+                <div class="col-sm-6">
+                    <select name="catexistente" id="catexistente" class="selectpicker">
+                        <option value="">Selecione uma categoria</option>
+                        <c:if test="${sessionScope.kingnote.getAllCategories() != null}">
+                            <c:forEach items="${sessionScope.kingnote.getAllCategories()}" var="category" >
+                                <option style="background: ${category.getColor()}; color: #fff;" value="${category.getId()}">${category.getName()}</option>
+                            </c:forEach>
+                        </c:if>
+                    </select>
                 </div>
-                <script>
-                    $(function () {
-
-                        $('#cp2').colorpicker().on('changeColor', function (e) {
-                            $('#corUser')[0].style.backgroundColor = e.color.toString('hex');
-                        });
-                    });
-                </script>
             </div>
         </div>
+        <hr>
+        <div id="cad-nova">
+            <h3>Nova:</h3>
+            <div class="form-group">
+                <label for="nome" class="col-sm-2 control-label">Nome</label>
+                <div class="col-sm-6">
+                    <input class="form-control" type="text" id="nome" name="nome" />
+                </div>
+            </div>
 
+            <div class="form-group">
+                <label for="Cor" class="col-md-2 control-label">Cor</label>
+
+                <div class="col-md-3">
+                    <div id="cp2" class="input-group colorpicker-component" data-input="#cor" >
+                        <input type="hidden" id="cor" name="cor" class="form-control" />
+                        <input type="text" id="corUser" class="form-control" disabled />
+                        <span class="input-group-addon"><i></i></span>
+                    </div>
+                    <script>
+                        $(function () {
+
+                            $('#cp2').colorpicker().on('changeColor', function (e) {
+                                $('#corUser')[0].style.backgroundColor = e.color.toString('hex');
+                            });
+                        });
+                    </script>
+                </div>
+            </div>
+        </div>
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
                 <button type="submit" class="btn btn-success btn-md">
@@ -59,21 +77,23 @@
             <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th class="col-md-1">#</th>
                         <th>Nome</th>
                         <th class="col-md-3">Cor</th>
                         <th class="col-md-1">Ação</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr >
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td style="background-color: tan;"></td>
-                        <td class="text-center">
-                            <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-trash"></span> </a>
-                        </td>
-                    </tr>
+                    <c:if test="${sessionScope.kingnote.getCategories(param.id) != null}">
+                        <c:forEach items="${sessionScope.kingnote.getCategories(param.id)}" var="category" >
+                            <tr>
+                                <td class="row">${category.getName()}</td>
+                                <td style="background-color: ${category.getColor()};"></td>
+                                <td class="text-center">
+                                    <a href="KingNoteServlet?operacao=delCategory&idNote=${param.id}&idCategory=${category.getId()}" class="btn btn-danger btn-xs" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-trash"></span> </a>
+                                </td>
+                            </tr>
+                        </c:forEach>
+                    </c:if>
                 </tbody>
             </table>
 

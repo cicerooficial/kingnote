@@ -5,7 +5,9 @@ import kingnote.model.Category;
 import kingnote.model.Note;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class KingNote {
 
@@ -152,6 +154,25 @@ public class KingNote {
         }
     }
 
+    public void addCategory(String idNote, String idCategory) {
+        Category returnSearchCategory = searchCategory(idCategory);
+        Note returnSearchNote = searchNote(idNote);
+        if (returnSearchNote != null && returnSearchCategory != null) {
+            if (!existsCategoryInNote(returnSearchNote, returnSearchCategory)) {
+                returnSearchNote.getCategories().add(returnSearchCategory);
+            }
+        }
+    }
+
+    public boolean existsCategoryInNote(Note note, Category category) {
+        for (Category cat : note.getCategories()) {
+            if (cat.getId() == category.getId()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public void editCategory(String idNote, String idCategory, String name, String color) {
         Note returnSearchNote = searchNote(idNote);
         if (returnSearchNote != null) {
@@ -174,12 +195,39 @@ public class KingNote {
     }
 
     private Category searchCategory(Note note, String id) {
-        for (Category Category : note.getCategories()) {
+        for (Category category : note.getCategories()) {
+            if (category.getId().equals(id)) {
+                return category;
+            }
+        }
+        return null;
+    }
+
+    private Category searchCategory(String id) {
+        for (Category Category : getAllCategories()) {
             if (Category.getId().equals(id)) {
                 return Category;
             }
         }
         return null;
+    }
+
+    public ArrayList<Category> getCategories(String idNote) {
+        Note returnSearchNote = searchNote(idNote);
+        if (returnSearchNote != null) {
+            return returnSearchNote.getCategories();
+        }
+        return null;
+    }
+
+    public Set<Category> getAllCategories() {
+        Set<Category> list = new HashSet<>();
+        for (Note note : notes) {
+            for (Category category : note.getCategories()) {
+                list.add(category);
+            }
+        }
+        return list;
     }
     // END - Entity Category
 
