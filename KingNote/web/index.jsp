@@ -35,16 +35,27 @@
             <c:forEach items="${sessionScope.kingnote.getNotes()}" var="note">
                 <div class="col-md-3" id="notepad">
                     <form action="KingNoteServlet" method="POST">
+
                         <input type="hidden" name="operacao" value="editNote"/>
                         <input type="hidden" name="idNote" value="${note.getId()}"/>
+                        <div class="row" id="toptags">
+                        
+                  
+                            <c:if test="${note.getCategories() != null}">
+                                <c:forEach items="${note.getCategories()}" var="category">
+                                    <span class="label" style="background-color: ${category.getColor()}">${category.getName()}</span>
+                                </c:forEach>
+                            </c:if>       
+                        </div>
                         <div class="row" id="top">
+
                             <input type="text" name="title" id="title" autocomplete="off" value="${note.getTitle()}" onkeyup="noteChanged()" onfocus="$(this).css('backgroundPosition', '0 -29px')"onblur="$(this).css('backgroundPosition', '0 0')" style="background-position: 0px 0px;" >
                             <div id="note-buttons">
                                 <button type="submit" class="button-no-style">
                                     <span class="glyphicon glyphicon-floppy-disk"></span> 
                                 </button>
-                                <a href="addReminder.jsp?id=${note.getId()}" title="Lembrete" > <span class="glyphicon glyphicon-time" style="color: #08c;"></span>          </a>
-                                <a href="addCategory.jsp?id=${note.getId()}" title="Categoria" > <span class="glyphicon glyphicon-tags" style="color: orange;"></span>          </a>
+                                <a href="addReminder.jsp?id=${note.getId()}" title="Lembretes" > <span class="glyphicon glyphicon-time" style="color: #08c;"></span>          </a>
+                                <a href="addCategory.jsp?id=${note.getId()}" title="Categorias" > <span class="glyphicon glyphicon-tags" style="color: orange;"></span>          </a>
                                 <a href="KingNoteServlet?operacao=delNote&idNote=${note.getId()}" title="Excluir"> <span class="glyphicon glyphicon-trash" style="color: red;"></span>        </a>
                             </div>
                         </div>

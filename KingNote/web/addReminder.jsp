@@ -7,7 +7,7 @@
 <!-- INICIO CONTEUDO -->
 <div class="container">
     <div class="page-header">
-        <h1>L</h1>
+        <h1>Lembretes</h1>
     </div>
     <form class="form-horizontal" action="KingNoteServlet" method="POST">
         <input type="hidden" name="operacao" value="addReminder"/>
