@@ -8,6 +8,12 @@ public class Category {
     private String name;
     private String color;
 
+    /**
+     * construtor da categoria, o id é gerado aleatoriamente
+     *
+     * @param name
+     * @param color
+     */
     public Category(String name, String color) {
         this.id = UUID.randomUUID().toString();
         this.name = name;
@@ -15,6 +21,8 @@ public class Category {
     }
 
     /**
+     * retorna o id da categoria
+     *
      * @return the id
      */
     public String getId() {
@@ -22,6 +30,8 @@ public class Category {
     }
 
     /**
+     * retorna o nome da categoria
+     *
      * @return the name
      */
     public String getName() {
@@ -29,6 +39,8 @@ public class Category {
     }
 
     /**
+     * seta o nome da categoria
+     *
      * @param name the name to set
      */
     public void setName(String name) {
@@ -36,6 +48,8 @@ public class Category {
     }
 
     /**
+     * retorna a cor da categoria
+     *
      * @return the color
      */
     public String getColor() {
@@ -43,6 +57,8 @@ public class Category {
     }
 
     /**
+     * seta a cor da categoria
+     *
      * @param color the color to set
      */
     public void setColor(String color) {

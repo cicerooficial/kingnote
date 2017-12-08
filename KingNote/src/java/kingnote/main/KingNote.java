@@ -14,12 +14,24 @@ public class KingNote {
     private List<Note> notes = new ArrayList<>();
     private ArrayList<Note> trash = new ArrayList<>();
 
-    // BEGIN - Entity Note
+    // BEGIN - Note
+    /**
+     * adiciona uma nota com titulo e texto
+     *
+     * @param title
+     * @param text
+     */
     public void addNote(String title, String text) {
-        Note newNote = new Note(title, text);
-        getNotes().add(newNote);
+        getNotes().add(new Note(title, text));
     }
 
+    /**
+     * edita uma nota indicada pelo id
+     *
+     * @param id
+     * @param title
+     * @param text
+     */
     public void editNote(String id, String title, String text) {
         Note returnSearch = searchNote(id);
         if (returnSearch != null) {
@@ -32,6 +44,11 @@ public class KingNote {
         }
     }
 
+    /**
+     * remove a nota que for indicada pelo id
+     *
+     * @param id
+     */
     public void removeNote(String id) {
         Note returnSearch = searchNote(id);
         if (returnSearch != null) {
@@ -40,6 +57,12 @@ public class KingNote {
         }
     }
 
+    /**
+     * procura nota por id
+     *
+     * @param id
+     * @return
+     */
     private Note searchNote(String id) {
         for (Note note : getNotes()) {
             if (note.getId().equals(id)) {
@@ -48,9 +71,14 @@ public class KingNote {
         }
         return null;
     }
-    // END - Entity Note
+    // END - Note
 
-    // BEGIN - Entity Trash
+    // BEGIN - Trash
+    /**
+     * restaura nota que estava na lixeira
+     *
+     * @param id
+     */
     public void restoreTrash(String id) {
         Note returnSearch = searchTrash(id);
         if (returnSearch != null) {
@@ -59,6 +87,11 @@ public class KingNote {
         }
     }
 
+    /**
+     * Remove da lixeira, deleta da sessão definitivamente
+     *
+     * @param id
+     */
     public void removeTrash(String id) {
         Note returnSearch = searchTrash(id);
         if (returnSearch != null) {
@@ -66,6 +99,12 @@ public class KingNote {
         }
     }
 
+    /**
+     * procura nota na lixeira pelo id
+     *
+     * @param id
+     * @return
+     */
     private Note searchTrash(String id) {
         for (Note note : getTrash()) {
             if (note.getId().equals(id)) {
@@ -74,9 +113,15 @@ public class KingNote {
         }
         return null;
     }
-    // END - Entity Trash
+    // END - Trash
 
-    // BEGIN - Entity Reminder
+    // BEGIN - Reminder
+    /**
+     * retorna a lista de lembretes de uma nota indicada pelo id.
+     *
+     * @param idNote
+     * @return
+     */
     public ArrayList<Reminder> getReminders(String idNote) {
         Note returnSearch = searchNote(idNote);
         if (returnSearch != null) {
@@ -85,6 +130,13 @@ public class KingNote {
         return null;
     }
 
+    /**
+     * adiciona um lembrete com titulo e data para uma nota indicada pelo id
+     *
+     * @param idNote
+     * @param title
+     * @param data
+     */
     public void addReminder(String idNote, String title, Date data) {
         Reminder newReminder = new Reminder(title, data);
         Note returnSearch = searchNote(idNote);
@@ -93,6 +145,13 @@ public class KingNote {
         }
     }
 
+    /**
+     * edita titulo e data de um lembrete for indicada pelo id do lembrete.
+     *
+     * @param idReminder
+     * @param title
+     * @param data
+     */
     public void editReminder(String idReminder, String title, Date data) {
         Reminder returnSearchReminder = searchReminderInAll(idReminder);
         if (returnSearchReminder != null) {
@@ -101,6 +160,12 @@ public class KingNote {
         }
     }
 
+    /**
+     * remove lembrete pelo id.
+     *
+     * @param idReminder
+     * @return
+     */
     public String removeReminder(String idReminder) {
         Note returnSearchNote = searchNoteOfReminder(idReminder);
         if (returnSearchNote != null) {
@@ -113,6 +178,13 @@ public class KingNote {
         return "";
     }
 
+    /**
+     * procura lembrete em uma nota, busca atraves do id do lembrete
+     *
+     * @param note
+     * @param id
+     * @return
+     */
     private Reminder searchReminder(Note note, String id) {
         for (Reminder reminder : note.getReminders()) {
             if (reminder.getId().contains(id)) {
@@ -122,6 +194,12 @@ public class KingNote {
         return null;
     }
 
+    /**
+     * busca em todas as notas um lembrete indicado pelo id
+     *
+     * @param idReminder
+     * @return
+     */
     private Reminder searchReminderInAll(String idReminder) {
         for (Note note : notes) {
             for (Reminder reminder : note.getReminders()) {
@@ -133,6 +211,12 @@ public class KingNote {
         return null;
     }
 
+    /**
+     * busca uma nota que contenha o lembrete indicado pelo id.
+     *
+     * @param idReminder
+     * @return
+     */
     private Note searchNoteOfReminder(String idReminder) {
         for (Note note : notes) {
             for (Reminder reminder : note.getReminders()) {
@@ -143,9 +227,16 @@ public class KingNote {
         }
         return null;
     }
-    // END - Entity Reminder
+    // END - Reminder
 
-    // BEGIN - Entity Category
+    // BEGIN - Category
+    /**
+     * adiciona uma nova categoria a uma nota com nome e cor RGB
+     *
+     * @param idNote
+     * @param name
+     * @param color
+     */
     public void addCategory(String idNote, String name, String color) {
         Category newCategory = new Category(name, color);
         Note returnSearch = searchNote(idNote);
@@ -154,6 +245,13 @@ public class KingNote {
         }
     }
 
+    /**
+     * adiciona categoria pre-existe a uma nota, indicando o id da nota e o id
+     * da categoria
+     *
+     * @param idNote
+     * @param idCategory
+     */
     public void addCategory(String idNote, String idCategory) {
         Category returnSearchCategory = searchCategory(idCategory);
         Note returnSearchNote = searchNote(idNote);
@@ -164,6 +262,13 @@ public class KingNote {
         }
     }
 
+    /**
+     * verifica se existe uma categoria em uma nota.
+     *
+     * @param note
+     * @param category
+     * @return
+     */
     public boolean existsCategoryInNote(Note note, Category category) {
         for (Category cat : note.getCategories()) {
             if (cat.getId() == category.getId()) {
@@ -173,6 +278,14 @@ public class KingNote {
         return false;
     }
 
+    /**
+     * edita categoria de uma nota. NÃO UTILIZADO
+     *
+     * @param idNote
+     * @param idCategory
+     * @param name
+     * @param color
+     */
     public void editCategory(String idNote, String idCategory, String name, String color) {
         Note returnSearchNote = searchNote(idNote);
         if (returnSearchNote != null) {
@@ -184,6 +297,12 @@ public class KingNote {
         }
     }
 
+    /**
+     * remove categoria de uma nota indicando o id dos dois.
+     *
+     * @param idNote
+     * @param idCategory
+     */
     public void removeCategory(String idNote, String idCategory) {
         Note returnSearchNote = searchNote(idNote);
         if (returnSearchNote != null) {
@@ -194,6 +313,14 @@ public class KingNote {
         }
     }
 
+    /**
+     * busca e retorna a categoria que esteja em uma nota, busca realizada pelo
+     * id da categoria
+     *
+     * @param note
+     * @param id
+     * @return
+     */
     private Category searchCategory(Note note, String id) {
         for (Category category : note.getCategories()) {
             if (category.getId().equals(id)) {
@@ -203,6 +330,13 @@ public class KingNote {
         return null;
     }
 
+    /**
+     * busca e retorna a categoria indicada pelo id, a busca é global, todas as
+     * categorias cadastradas
+     *
+     * @param id
+     * @return
+     */
     private Category searchCategory(String id) {
         for (Category Category : getAllCategories()) {
             if (Category.getId().equals(id)) {
@@ -212,6 +346,12 @@ public class KingNote {
         return null;
     }
 
+    /**
+     * retorna o arraylist de categorias de uma nota.
+     *
+     * @param idNote
+     * @return
+     */
     public ArrayList<Category> getCategories(String idNote) {
         Note returnSearchNote = searchNote(idNote);
         if (returnSearchNote != null) {
@@ -220,6 +360,11 @@ public class KingNote {
         return null;
     }
 
+    /**
+     * retorna o arraylist de todas as categorias, global
+     *
+     * @return
+     */
     public Set<Category> getAllCategories() {
         Set<Category> list = new HashSet<>();
         for (Note note : notes) {
@@ -229,20 +374,89 @@ public class KingNote {
         }
         return list;
     }
-    // END - Entity Category
 
+    // END - Category
+    /**
+     * retorna um list de notas considerando a busca e o filtro
+     *
+     * @param search
+     * @param filter
+     * @return
+     */
+    public List<Note> getNotesSearchAndFilter(String search, String filter) {
+        List<Note> result = new ArrayList<>();
+        if (search == "" && filter == "") {
+            return getNotes();
+        } else if (search != "" && filter != "") {
+            for (Note note : getNotes()) {
+                if (note.getTitle().contains(search)) {
+                    for (Category category : note.getCategories()) {
+                        if (category.getId().equals(filter)) {
+                            result.add(note);
+                        }
+                    }
+                }
+            }
+        } else if (search != "" && filter == "") {
+            for (Note note : getNotes()) {
+                if (note.getTitle().contains(search)) {
+                    result.add(note);
+                }
+            }
+        } else if (search == "" && filter != "") {
+            for (Note note : getNotes()) {
+                for (Category category : note.getCategories()) {
+                    if (category.getId().equals(filter)) {
+                        result.add(note);
+                    }
+                }
+            }
+        }
+
+        return result;
+    }
+
+    /**
+     * retorna as notas
+     *
+     * @return
+     */
     public List<Note> getNotes() {
         return notes;
     }
 
+    /**
+     * retorna as notas com a busca e filtro
+     *
+     * @return
+     */
+    public List<Note> getNotes(String search, String filter) {
+        return getNotesSearchAndFilter(search, filter);
+    }
+
+    /**
+     * seta o array list das notas. NÃO UTILIZADO
+     *
+     * @param notes
+     */
     public void setNotes(ArrayList<Note> notes) {
         this.notes = notes;
     }
 
+    /**
+     * retorna o array list da lixeira
+     *
+     * @return
+     */
     public ArrayList<Note> getTrash() {
         return trash;
     }
 
+    /**
+     * seta o array list da lixeira. NÃO UTILIZADO
+     *
+     * @param trash
+     */
     public void setTrash(ArrayList<Note> trash) {
         this.trash = trash;
     }

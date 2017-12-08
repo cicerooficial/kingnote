@@ -11,6 +11,12 @@ public class Note {
     private ArrayList<Reminder> reminders = new ArrayList<>();
     private String text;
 
+    /**
+     * Construtor da nota, o id é gerado aleatoriamente pelo Java
+     *
+     * @param title
+     * @param text
+     */
     public Note(String title, String text) {
         this.id = UUID.randomUUID().toString();
         if (title.length() > 0) {
@@ -20,8 +26,10 @@ public class Note {
         }
         this.text = text;
     }
-    
+
     /**
+     * Retorna o id da nota
+     *
      * @return the id
      */
     public String getId() {
@@ -29,6 +37,8 @@ public class Note {
     }
 
     /**
+     * Retorna o titulo da nota
+     *
      * @return the title
      */
     public String getTitle() {
@@ -36,6 +46,8 @@ public class Note {
     }
 
     /**
+     * Seta o titulo da nota
+     *
      * @param title the title to set
      */
     public void setTitle(String title) {
@@ -43,6 +55,8 @@ public class Note {
     }
 
     /**
+     * Retorna o texto da nota
+     *
      * @return the text
      */
     public String getText() {
@@ -50,6 +64,8 @@ public class Note {
     }
 
     /**
+     * Seta o texto da nota
+     *
      * @param text the text to set
      */
     public void setText(String text) {
@@ -57,6 +73,8 @@ public class Note {
     }
 
     /**
+     * Retorna o arraylist de categorias
+     *
      * @return the categories
      */
     public ArrayList<Category> getCategories() {
@@ -64,6 +82,8 @@ public class Note {
     }
 
     /**
+     * Seta o arraylist de categorias
+     *
      * @param categories the categories to set
      */
     public void setCategories(ArrayList<Category> categories) {
@@ -71,6 +91,8 @@ public class Note {
     }
 
     /**
+     * Retorna o arraylist de lembretes
+     *
      * @return the reminders
      */
     public ArrayList<Reminder> getReminders() {
@@ -78,6 +100,8 @@ public class Note {
     }
 
     /**
+     * Seta o arraylist de lembretes
+     *
      * @param reminders the reminders to set
      */
     public void setReminders(ArrayList<Reminder> reminders) {

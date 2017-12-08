@@ -22,6 +22,9 @@ public class KingNoteServlet extends HttpServlet {
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         String operacao = request.getParameter("operacao");
+        /**
+         * Cadastra a nota
+         */
         if ("cadNote".equals(operacao)) {
             KingNote kgnote = (KingNote) request.getSession().getAttribute("kingnote");
             if (kgnote == null) {
@@ -37,6 +40,9 @@ public class KingNoteServlet extends HttpServlet {
             RequestDispatcher dispatcher = servletContext.getRequestDispatcher("/index.jsp");
             dispatcher.forward(request, response);
         } else if ("editNote".equals(operacao)) {
+            /**
+             * Edita a nota
+             */
             KingNote kgnote = (KingNote) request.getSession().getAttribute("kingnote");
             if (kgnote == null) {
                 kgnote = new KingNote();
@@ -52,6 +58,9 @@ public class KingNoteServlet extends HttpServlet {
             RequestDispatcher dispatcher = servletContext.getRequestDispatcher("/index.jsp");
             dispatcher.forward(request, response);
         } else if ("addReminder".equals(operacao)) {
+            /**
+             * Adiciona um lembrete a uma nota
+             */
             KingNote kgnote = (KingNote) request.getSession().getAttribute("kingnote");
             if (kgnote == null) {
                 kgnote = new KingNote();
@@ -74,6 +83,9 @@ public class KingNoteServlet extends HttpServlet {
             RequestDispatcher dispatcher = servletContext.getRequestDispatcher("/addReminder.jsp?id=" + idNote);
             dispatcher.forward(request, response);
         } else if ("delReminder".equals(operacao)) {
+            /**
+             * Deleta um lembrete da nota
+             */
             KingNote kgnote = (KingNote) request.getSession().getAttribute("kingnote");
             if (kgnote == null) {
                 kgnote = new KingNote();
@@ -92,6 +104,9 @@ public class KingNoteServlet extends HttpServlet {
             }
             dispatcher.forward(request, response);
         } else if ("delNote".equals(operacao)) {
+            /**
+             * "Deleta" nota, envia para lixeira
+             */
             KingNote kgnote = (KingNote) request.getSession().getAttribute("kingnote");
             if (kgnote == null) {
                 kgnote = new KingNote();
@@ -106,6 +121,9 @@ public class KingNoteServlet extends HttpServlet {
             RequestDispatcher dispatcher = servletContext.getRequestDispatcher("/index.jsp");
             dispatcher.forward(request, response);
         } else if ("delTrashNote".equals(operacao)) {
+            /**
+             * Deleta nota, exclusão definitiva da sessão
+             */
             KingNote kgnote = (KingNote) request.getSession().getAttribute("kingnote");
             if (kgnote == null) {
                 kgnote = new KingNote();
@@ -120,6 +138,9 @@ public class KingNoteServlet extends HttpServlet {
             RequestDispatcher dispatcher = servletContext.getRequestDispatcher("/trash.jsp");
             dispatcher.forward(request, response);
         } else if ("restoreTrashNote".equals(operacao)) {
+            /**
+             * Restaura nota da lixeira
+             */
             KingNote kgnote = (KingNote) request.getSession().getAttribute("kingnote");
             if (kgnote == null) {
                 kgnote = new KingNote();
@@ -134,6 +155,9 @@ public class KingNoteServlet extends HttpServlet {
             RequestDispatcher dispatcher = servletContext.getRequestDispatcher("/trash.jsp");
             dispatcher.forward(request, response);
         } else if ("addCategory".equals(operacao)) {
+            /**
+             * Adidiona uma categoria a uma nota
+             */
             KingNote kgnote = (KingNote) request.getSession().getAttribute("kingnote");
             if (kgnote == null) {
                 kgnote = new KingNote();
@@ -158,6 +182,9 @@ public class KingNoteServlet extends HttpServlet {
             RequestDispatcher dispatcher = servletContext.getRequestDispatcher("/addCategory.jsp?id=" + idNote);
             dispatcher.forward(request, response);
         } else if ("delCategory".equals(operacao)) {
+            /**
+             * Deleta categoria de uma nota
+             */
             KingNote kgnote = (KingNote) request.getSession().getAttribute("kingnote");
             if (kgnote == null) {
                 kgnote = new KingNote();
