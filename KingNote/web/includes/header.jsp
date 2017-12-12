@@ -28,9 +28,9 @@
         <meta name="msapplication-TileImage" content="assets/img/favicon/ms-icon-144x144.png">
         <meta name="theme-color" content="#ffffff">
         <!-- end - favicon -->
-
+  
         <!-- begin - javascript -->
-        <script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
+        <script src="assets/js/jquery-2.1.1.min.js"></script>
         <script src="assets/js/bootstrap.min.js"></script>
         <script src="assets/js/bootstrap-colorpicker.min.js"></script>
         <script src="assets/js/bootstrap-select.min.js"></script>
@@ -40,8 +40,8 @@
         <!--[if lt IE 9]><script src="assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
         <script src="assets/js/ie-emulation-modes-warning.js"></script>
         <!--[if lt IE 9]>
-            <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-            <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+            <script src="assets/js/html5shiv.min.js"></script>
+            <script src="assets/js/respond.min.js"></script>
           <![endif]-->
         <!-- end - javascript -->
 
@@ -57,7 +57,8 @@
         <!-- end - css -->
 
         <!-- begin - font -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+        <!--<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">-->
+        <link href="assets/css/font-nunito.css" rel="stylesheet">
         <!-- end - font -->
 
         <!-- begin - button openmenu click - animation toggle -->

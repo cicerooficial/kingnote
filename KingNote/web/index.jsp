@@ -37,8 +37,8 @@
     //<!-- end - hide/show search and filter -->
     
     //<!-- begin - validation form -->
-    $("form").submit(function (e) {
-        if ($("form").find("#title").val() == "") {
+    $("#frmCadNote").submit(function (e) {
+        if ($("#frmCadNote").find("#title").val() == "") {
             iaoMessage('Informe o título da nota', 'error');
             return false;
         }
@@ -52,9 +52,9 @@
     <button type="button" id="showSearch"class="btn btn-success btn-md">Buscar</button>
     <button type="button" id="showFilter"class="btn btn-success btn-md">Filtar</button>
     <div class="row">
-        <div class="col-xs-6" id="searchBox">
+        <div class="col-md-6" id="searchBox">
             <div class="page-header">
-                <h1>Buscar <a onclick="cleanSearchFilter('buscar')"><small>limpar</small></a></h1>
+                <h1>Buscar <a onclick="clearSearchFilter('buscar')"><small>limpar</small></a></h1>
             </div>
             <div class="input-group">
                 <input type="text" id="inputSearch" class="form-control" placeholder="digite um título">
@@ -64,9 +64,9 @@
             </div>
         </div>
 
-        <div class="col-xs-6" id="filterBox">
+        <div class="col-md-6" id="filterBox">
             <div class="page-header">
-                <h1>Filtro <a onclick="cleanSearchFilter('filtrar')"><small>limpar</small></a></h1>
+                <h1>Filtro <a onclick="clearSearchFilter('filtrar')"><small>limpar</small></a></h1>
             </div>
             <div class="input-group">
                 <select id="inputFilter" class="form-control selectpicker">
@@ -94,12 +94,12 @@
     <div class="row">
         <!-- begin - new note -->
         <div class="col-md-3" id="notepad">
-            <form action="KingNoteServlet" method="POST">
+            <form id="frmCadNote" action="KingNoteServlet" method="POST">
                 <input type="hidden" name="operacao" value="cadNote"/>
                 <div class="row" id="top">
-                    <input type="text" 
-                           name="title" 
-                           id="title" 
+                    <input type="text"
+                           name="title"
+                           id="title"
                            autocomplete="off" 
                            onfocus="$(this).css('backgroundPosition', '0 -29px')" 
                            onblur="$(this).css('backgroundPosition', '0 0')" 

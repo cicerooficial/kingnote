@@ -54,7 +54,6 @@ function confirmDialogGoTo(title = '', msg, url) {
             }
         }
     });
-
     return confirm;
 }
 
@@ -83,7 +82,7 @@ function goToSearchFilter(tipo) {
     }
 }
 
-function cleanSearchFilter(tipo) {
+function clearSearchFilter(tipo) {
     tipo = (tipo == 'buscar') ? "busca" : "filtro";
     var search = $('#inputSearch');
     var filter = $('#inputFilter');

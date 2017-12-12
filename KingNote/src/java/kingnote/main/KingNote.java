@@ -187,7 +187,7 @@ public class KingNote {
      */
     private Reminder searchReminder(Note note, String id) {
         for (Reminder reminder : note.getReminders()) {
-            if (reminder.getId().contains(id)) {
+            if (reminder.getId().equals(id)) {
                 return reminder;
             }
         }
@@ -203,7 +203,7 @@ public class KingNote {
     private Reminder searchReminderInAll(String idReminder) {
         for (Note note : notes) {
             for (Reminder reminder : note.getReminders()) {
-                if (reminder.getId().contains(idReminder)) {
+                if (reminder.getId().equals(idReminder)) {
                     return reminder;
                 }
             }
@@ -220,7 +220,7 @@ public class KingNote {
     private Note searchNoteOfReminder(String idReminder) {
         for (Note note : notes) {
             for (Reminder reminder : note.getReminders()) {
-                if (reminder.getId().contains(idReminder)) {
+                if (reminder.getId().equals(idReminder)) {
                     return note;
                 }
             }
